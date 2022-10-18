@@ -1,0 +1,85 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    background-color: #f3f5f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../assets/img/train-mountains.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    
+
+    .wrapper {
+        width: 60%;
+        height: 600px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+
+        .content-left {
+            width: 50%;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .content-right {
+            width: 50%;
+            
+
+            .login-form {
+                padding: 10px 70px;
+
+                h2 {
+                    font-size: 28px;
+                    margin-bottom: 28px;
+                }
+
+                .form-input {
+                    padding-bottom: 15px;
+                }
+
+                .form-button {
+                    height: 45px;
+                }
+
+                .form-link {
+                    margin-top: 15px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .form-line {
+                    text-align: center;
+                    position: relative;
+                    margin-top: 30px;
+
+                    span {
+                        background-color: #fff;
+                        z-index: 1;
+                        position: relative;
+                    }
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        height: 1px;
+                        left: 0;
+                        right: 0;
+                        top: 50%;
+                        background-color: #ccc;
+                    }
+                }
+
+                
+            }
+        }
+    }
+
+}
