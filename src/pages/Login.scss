@@ -23,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../assets/img/train-mountains.jpg');
+    background-image: url('../assets/img/Blue-Wallpaper.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -68,6 +68,9 @@
             padding: 0 30px;
             .login-form {
                 
+                p {
+                    color: red;
+                }
                 max-width: 350px;
                 margin: 0 auto;
                 min-width: 280px;

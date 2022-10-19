@@ -1,12 +1,28 @@
-import {IonItem,IonInput,IonButton, IonLabel, IonCheckbox, IonIcon} from '@ionic/react';
+import { IonItem, IonInput, IonButton, IonLabel, IonCheckbox, IonIcon } from '@ionic/react';
 import './Login.scss';
 import Remotely from "../assets/img/undraw_remotely.svg"
 import Facebook from "../assets/img/icons/logo-facebook.svg"
 import Google from "../assets/img/icons/logo-google.svg"
 import { logoFacebook, logoGoogle, eye } from 'ionicons/icons';
+import { useRef, useState, useEffect } from 'react';
 
 
 const Login: React.FC = () => {
+
+  const emailRef = useRef();
+  const errRef = useRef();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errMessage, setErrMessage] = useState('');
+  const [success, setSuccess] = useState(false);
+
+
+  useEffect(() => {
+    setErrMessage('');
+
+  },[email,password])
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -18,20 +34,20 @@ const Login: React.FC = () => {
           <form className="login-form">
             <h2>Đăng nhập</h2>
             <IonItem className="form-input">
-              <IonLabel position="floating" >Tài khoản</IonLabel>
+              <IonLabel position="floating" >Email</IonLabel>
               <IonInput />
             </IonItem>
             <IonItem className="form-input">
               <IonLabel position="floating" >Mật khẩu</IonLabel>
               <IonInput type="password" />
-              <IonIcon icon={eye} />
+              {/* <IonIcon icon={eye} /> */}
             </IonItem>
             <IonItem lines="none">
               <IonLabel>Nhớ tài khoản</IonLabel>
               <IonCheckbox defaultChecked={true} slot="start" />
             </IonItem>
             <IonButton className="form-button" type="submit" expand="block">
-            Đăng nhập ngay
+              Đăng nhập ngay
             </IonButton>
 
             <div className="form-link">
@@ -50,7 +66,7 @@ const Login: React.FC = () => {
               </a>
             </div>
           </form>
-  
+
         </div>
       </div>
     </div>
