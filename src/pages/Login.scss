@@ -1,3 +1,21 @@
+@mixin mobile {
+    @media screen and (max-width: 480px){
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width: 768px){
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media screen and (max-width: 1200px){
+        @content;
+    }
+}
+
 .container {
     height: 100vh;
     width: 100%;
@@ -9,6 +27,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    overflow: auto;
 
     
 
@@ -20,8 +39,20 @@
         align-items: center;
         border-radius: 10px;
 
+        @include tablet {
+             width: 80%;
+        }
+
+        @include mobile {
+            width: 90%;
+            height: 80%;
+       }
+
         .content-left {
             width: 50%;
+            @include laptop {
+                display: none;
+            }
 
             img {
                 width: 100%;
@@ -30,15 +61,35 @@
         }
 
         .content-right {
+            @include laptop {
+                width: 100%;
+            }
             width: 50%;
-            
-
+            padding: 0 30px;
             .login-form {
-                padding: 10px 70px;
+                
+                max-width: 350px;
+                margin: 0 auto;
+                min-width: 280px;
 
+
+                @include laptop {
+                    max-width: 450px;
+                }
+                @include tablet {
+                    max-width: 350px;
+                }
+
+                @include mobile {
+                    max-width: unset;
+                    min-width: unset;
+                }
                 h2 {
                     font-size: 28px;
                     margin-bottom: 28px;
+                    font-weight: 600;
+                    color: #383a3e;
+                    text-align: center;
                 }
 
                 .form-input {
@@ -53,28 +104,72 @@
                     margin-top: 15px;
                     display: flex;
                     justify-content: space-between;
+
+                    a {
+                        color: #0060ad;
+                        text-decoration: none;
+                        font-size: 14px;
+
+                        &:hover {
+                            color: #0060ad;
+                            text-decoration: underline;
+                        }
+                    }
                 }
 
                 .form-line {
                     text-align: center;
                     position: relative;
-                    margin-top: 30px;
+                    margin-top: 15px;
 
                     span {
                         background-color: #fff;
                         z-index: 1;
                         position: relative;
+                        padding: 2px 10px
                     }
 
                     &::before {
                         content: "";
                         position: absolute;
-                        height: 1px;
+                        height: 2px;
                         left: 0;
                         right: 0;
                         top: 50%;
                         background-color: #ccc;
                     }
+                }
+
+                .form-icon-social {
+                    width: 50%;
+                    display: flex;
+                    align-items: center;
+                    margin: 20px auto 0;
+                    justify-content:space-around;
+
+                    a {
+                        display: flex;
+                        align-items: center;
+                        padding:4px;
+                        color: #fff;
+
+                        &:first-child {
+                            background-color: #0060ad;
+                            border-radius: 3px;
+                            
+                        }
+
+                        &:last-child {
+                            border-radius: 50%;
+                            background-color: red;
+                        }
+
+
+                        ion-icon {
+                            font-size: 24px;
+                        }
+                    }
+                    
                 }
 
                 

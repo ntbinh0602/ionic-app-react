@@ -13,7 +13,6 @@ import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
 import Login from './pages/Login';
 
-
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -33,6 +32,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+
+
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -49,6 +50,7 @@ const App: React.FC = () => (
         </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
+ 
 );
 
 export default App;
