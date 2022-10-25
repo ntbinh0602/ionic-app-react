@@ -1,46 +1,64 @@
-import { IonItem, IonInput, IonButton, IonLabel, IonCheckbox, IonIcon } from '@ionic/react';
-import './Login.scss';
-import Remotely from "../assets/img/undraw_remotely.svg"
-import Facebook from "../assets/img/icons/logo-facebook.svg"
-import Google from "../assets/img/icons/logo-google.svg"
-import { logoFacebook, logoGoogle, eye } from 'ionicons/icons';
-import { useRef, useState, useEffect } from 'react';
-
+import {
+  IonItem,
+  IonInput,
+  IonButton,
+  IonLabel,
+  IonCheckbox,
+  IonIcon,
+} from "@ionic/react";
+import "./Login.scss";
+import Remotely from "../assets/img/undraw_remotely.svg";
+import { logoFacebook, logoGoogle } from "ionicons/icons";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { AUTHENTICATION } from "../services";
 
 const Login: React.FC = () => {
-
-  const emailRef = useRef();
-  const errRef = useRef();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errMessage, setErrMessage] = useState('');
-  const [success, setSuccess] = useState(false);
-
-
-  useEffect(() => {
-    setErrMessage('');
-
-  },[email,password])
+  const [errMsg, setErrMsg] = useState(false);
+  const [username, setUsername] = useState("");
+  const [host, setHost] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    let res = AUTHENTICATION(host, "odoo15", username, password);
+  };
 
   return (
     <div className="container">
       <div className="wrapper">
-
         <div className="content-left">
           <img src={Remotely} alt="Co-Working Img" />
         </div>
         <div className="content-right">
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <h2>Đăng nhập</h2>
+            {errMsg && errMsg === true && <p>Tài khoản hoặc mật khẩu sai!</p>}
             <IonItem className="form-input">
-              <IonLabel position="floating" >Email</IonLabel>
-              <IonInput />
+              <IonLabel position="floating">Host</IonLabel>
+              <IonInput
+                required
+                type="text"
+                onIonChange={(e: any) => setHost(e.target.value)}
+                value={host}
+              />
             </IonItem>
             <IonItem className="form-input">
-              <IonLabel position="floating" >Mật khẩu</IonLabel>
-              <IonInput type="password" />
-              {/* <IonIcon icon={eye} /> */}
+              <IonLabel position="floating">Tài khoản</IonLabel>
+              <IonInput
+                required
+                type="text"
+                onIonChange={(e: any) => setUsername(e.target.value)}
+                value={username}
+              />
+            </IonItem>
+            <IonItem className="form-input">
+              <IonLabel position="floating">Mật khẩu</IonLabel>
+              <IonInput
+                required
+                type="password"
+                value={password}
+                onIonChange={(e: any) => setPassword(e.target.value)}
+              />
             </IonItem>
             <IonItem lines="none">
               <IonLabel>Nhớ tài khoản</IonLabel>
@@ -66,7 +84,6 @@ const Login: React.FC = () => {
               </a>
             </div>
           </form>
-
         </div>
       </div>
     </div>
