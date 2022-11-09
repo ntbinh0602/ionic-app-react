@@ -18,6 +18,7 @@ export function cngApiService(
   baseURL: string | undefined,
   headers: any = {
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
   },
   timeout: number = 20000
 ) {
@@ -106,7 +107,6 @@ export async function POST(apiUrl: string, jsonData: any) {
   //     console.log("====================================");
   //     console.log("Lỗi err", err);
   //     console.log("====================================");
-
   //     // throw err;
   //     return {};
   //   });
