@@ -10,9 +10,8 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, triangle } from "ionicons/icons";
 import Login from "./pages/Login";
-import { Home } from "./pages/Home";
+import HomePage from "./pages/HomePage";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -46,7 +45,7 @@ const App: React.FC = () => (
           <Redirect to="/login" />
         </Route>
         <Route exact path="/">
-          <Home />
+          <HomePage />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

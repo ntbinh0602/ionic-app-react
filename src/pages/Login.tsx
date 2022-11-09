@@ -18,9 +18,13 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [host, setHost] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
     let res = AUTHENTICATION(host, "odoo15", username, password);
+    // console.log(res);
+    // history.push("/");
   };
 
   return (

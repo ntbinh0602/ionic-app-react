@@ -22,6 +22,7 @@ export function AUTHENTICATION(
 
   return POST(`${host}/web/session/authenticate`, jsonData)
     .then((result) => {
+      console.log("data", result);
       return result;
     })
     .catch((err) => {

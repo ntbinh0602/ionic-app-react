@@ -36,7 +36,8 @@
         height: 600px;
         background: #fff;
         display: flex;
-        align-items: center;
+        position: absolute;
+        transform: translateY(50%, -50%);
         border-radius: 10px;
 
         @include tablet {
@@ -45,7 +46,6 @@
 
         @include mobile {
             width: 90%;
-            height: 80%;
        }
 
         .content-left {

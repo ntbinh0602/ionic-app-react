@@ -17,12 +17,7 @@ export function convertSpecial2Html(str: string) {
 export function cngApiService(
   baseURL: string | undefined,
   headers: any = {
-    "content-type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": "true",
-    "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-    "Access-Control-Allow-Headers":
-      "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
+    "Content-Type": "application/json",
   },
   timeout: number = 20000
 ) {
@@ -72,32 +67,53 @@ export function DELETE(apiUrl: string, token: string | boolean = false) {
     });
 }
 
-// chuyển json sang lệnh post
-export function POST(apiUrl: string, jsonData: any) {
-  const customAxios = cngApiService(undefined);
-  // console.log("Post cái gì?", apiUrl, jsonData, token);
-  return customAxios
-    .post(apiUrl, jsonData)
-    .then((result) => {
-      console.log(result);
-
-      if (result && result.data) {
-        //body
-        return result.data;
-      }
-      throw `Không có kết quả trên hàm POST: ${apiUrl}`;
-    })
+// chuyển json sang lệnh post json
+export async function POST(apiUrl: string, jsonData: any) {
+  const headersConfig = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const result = await axios
+    .post(apiUrl, jsonData, headersConfig)
     .catch((err) => {
-      console.log("====================================");
-      console.log("Lỗi err", err);
-      console.log("====================================");
-
-      // throw err;
+      console.log("Err:", err);
       return {};
     });
+
+  // console.log("Result:", result);
+  return result;
+
+  // var customAxios = cngApiService(apiUrl, {
+  //   "content-type": "application/json",
+  //   "Access-Control-Allow-Origin": "*",
+  // });
+
+  // console.log("Post cái gì?", apiUrl, jsonData);
+
+  // return customAxios
+  //   .post(apiUrl, JSON.stringify(jsonData))
+  //   .then((result) => {
+  //     console.log(result);
+
+  //     if (result && result.data) {
+  //       //body
+  //       return result.data;
+  //     }
+  //     throw `Không có kết quả trên hàm POST: ${apiUrl}`;
+  //   })
+  //   .catch((err) => {
+  //     console.log("====================================");
+  //     console.log("Lỗi err", err);
+  //     console.log("====================================");
+
+  //     // throw err;
+  //     return {};
+  //   });
 }
 
 // Hàm lệnh put tức là update
+
 export function PUT(
   apiUrl: string,
   jsonData: any,
